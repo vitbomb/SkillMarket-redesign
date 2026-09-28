@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Skill Market conecta profissionais de serviços digitais a pessoas e projetos que precisam de talento especializado.">
+    <title>Criar conta | Skill Market</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" type="image/png" href="imagens/download-_1_.ico">
+</head>
+<body class="auth-page">
+<header class="site-header">
+    <div class="header-shell">
+        <a class="brand" href="index.html" aria-label="Skill Market - página inicial">
+            <span class="brand-mark"><img src="imagens/logoestrela.png" alt=""></span>
+            <span class="brand-name">Skill<span>Market</span></span>
+        </a>
+        
+        <div class="header-geral">
+            <nav aria-label="Navegação principal">
+                <ul class="itens-header">
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="busca.html">Explorar</a></li>
+                    <li><a href="sobrenos.html">Sobre</a></li>
+                    <li><a href="help.html">Ajuda</a></li>
+                    <li id="menu-signin"><a href="signin.html">Entrar</a></li>
+                    <li id="menu-signup"><a href="signup.html">Criar conta</a></li>
+                </ul>
+            </nav>
+            <div class="perfil-header" id="menu-perfil" style="display: none;">
+                <img src="imagens/placeholder-usuario.png" alt="Foto do perfil" class="imagem2-header" tabindex="0">
+                <div class="submenu-perfil">
+                    <a href="perfil.html" id="linkMeuPerfilMenu">Meu perfil</a>
+                    <a href="perfil-profissional.html">Editar perfil</a>
+                    <a href="#" id="btnSair">Sair da conta</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<main class="container-cadastro">
+    <div class="auth-layout">
+        <aside class="auth-aside">
+    <div><a class="brand" href="index.html" aria-label="Skill Market - página inicial">
+            <span class="brand-mark"><img src="imagens/logoestrela.png" alt=""></span>
+            <span class="brand-name">Skill<span>Market</span></span>
+        </a></div>
+    <div>
+        <h2>Um espaço para talentos digitais se encontrarem.</h2>
+        <p>Perfis claros, busca objetiva e contato direto entre quem precisa de uma solução e quem sabe fazer.</p>
+        <div class="auth-benefits">
+            <div class="auth-benefit"><span class="auth-check">✓</span> Perfil profissional personalizado</div>
+            <div class="auth-benefit"><span class="auth-check">✓</span> Busca por habilidade e área</div>
+            <div class="auth-benefit"><span class="auth-check">✓</span> Portfólio e contato em um só lugar</div>
+        </div>
+    </div>
+    <small>Skill Market · Procure. Encontre. Conecte.</small>
+</aside>
+        <form id="formCadastro" class="cadastro">
+            <span class="section-kicker">Comece agora</span>
+            <h1>Crie sua conta</h1>
+            <p class="form-subtitle">Leva poucos minutos. Depois você escolhe como pretende usar o Skill Market.</p>
+            <div class="form-group"><label for="nome">Nome</label><input type="text" id="nome" placeholder="Seu nome" autocomplete="name" required></div>
+            <div class="form-group"><label for="email">E-mail</label><input type="email" id="email" placeholder="voce@exemplo.com" autocomplete="email" required></div>
+            <div class="form-group"><label for="senha">Senha</label><input type="password" id="senha" placeholder="Mínimo de 6 caracteres" autocomplete="new-password" minlength="6" required></div>
+            <div class="form-group"><label for="confirmarSenha">Confirmar senha</label><input type="password" id="confirmarSenha" placeholder="Repita sua senha" autocomplete="new-password" minlength="6" required></div>
+            <p id="mensagemErro" class="mensagem-erro" aria-live="polite"></p>
+            <div class="botoes-cadastro"><a class="btn-secondary" href="signin.html" id="btnJaPossuo">Já tenho conta</a><button type="submit" id="btnCadastrar">Criar conta</button></div>
+        </form>
+    </div>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
