@@ -25,3 +25,11 @@ Os IDs usados pelo `script.js`, as páginas do fluxo e os endpoints atuais foram
 ## Observações importantes do backend
 
 Antes de publicar uma versão definitiva, vale revisar a segurança das rotas administrativas. O backend atualmente gera um `tokenAdmin`, mas as rotas de listagem e aprovação/rejeição não validam esse token. Além disso, o login administrativo contém logs das credenciais no console do servidor. Esses pontos não foram alterados aqui porque este pacote foi focado no redesign do front-end.
+
+## Tema claro/escuro
+- Adicionado `theme.js`, carregado antes do CSS em todas as páginas para evitar flash de tema incorreto.
+- O tema inicial respeita a preferência do sistema operacional quando o usuário ainda não escolheu um tema.
+- A escolha manual é persistida no `localStorage` (`skillmarket-theme`).
+- O botão de tema é inserido automaticamente no cabeçalho; no painel administrativo, que não possui cabeçalho global, ele aparece de forma flutuante.
+- O tema escuro cobre home, busca, perfis, autenticação, formulários, ajuda, sobre, painel administrativo, footer e componentes gerados dinamicamente.
+- Foram adicionados `color-scheme`, estilos de autofill, foco, contraste e suporte a `prefers-reduced-motion`.
