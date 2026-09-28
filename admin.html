@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Skill Market conecta profissionais de serviços digitais a pessoas e projetos que precisam de talento especializado.">
+    <title>Painel administrativo | Skill Market</title>
+    <script src="theme.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" type="image/png" href="imagens/download-_1_.ico">
+</head>
+<body class="body2 admin-page">
+<main class="container-cadastro" id="secaoLoginAdmin">
+    <div class="auth-layout">
+        <aside class="auth-aside"><div><a class="brand" href="index.html" aria-label="Skill Market - página inicial">
+            <span class="brand-mark"><img src="imagens/logoestrela.png" alt=""></span>
+            <span class="brand-name">Skill<span>Market</span></span>
+        </a></div><div><h2>Moderação do Skill Market</h2><p>Área reservada para revisão dos perfis profissionais enviados à plataforma.</p></div><small>Acesso administrativo</small></aside>
+        <form id="formAdmin" class="cadastro">
+            <span class="section-kicker">Acesso restrito</span><h1>Painel administrativo</h1><p class="form-subtitle">Use as credenciais administrativas para revisar perfis pendentes.</p>
+            <div class="form-group"><label for="adminEmail">E-mail administrativo</label><input type="email" id="adminEmail" placeholder="admin@exemplo.com" required autocomplete="username"></div>
+            <div class="form-group"><label for="adminSenha">Senha</label><input type="password" id="adminSenha" placeholder="Digite sua senha" required autocomplete="current-password"></div>
+            <p id="msgErroAdmin" class="mensagem-erro" aria-live="polite"></p><div class="botoes-cadastro"><button type="submit">Entrar no painel</button></div>
+        </form>
+    </div>
+</main>
+
+<main id="secaoPainelAdmin" class="perfil-container-flex" style="display:none; flex-direction:column;">
+    <div class="admin-topbar"><div><h2>Painel de moderação</h2><p>Revise os perfis que aguardam aprovação.</p></div><button id="btnSairAdmin" class="admin-logout" type="button">Sair</button></div>
+    <h3 class="admin-section-title">Perfis aguardando aprovação</h3>
+    <div class="resultados-grid" id="containerPendentes"></div>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
