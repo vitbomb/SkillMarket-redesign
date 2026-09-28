@@ -15,6 +15,15 @@ app.use(cors());
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ limit: '10mb', extended: true }));
 
+// Endpoints simples para o Render verificar se a API está saudável.
+app.get('/', (req, res) => {
+    res.status(200).json({ status: 'ok', servico: 'SkillMarket API' });
+});
+
+app.get('/health', (req, res) => {
+    res.status(200).json({ status: 'ok' });
+});
+
 // Configuração do transportador do Nodemailer
 const transportador = nodemailer.createTransport({
     service: 'gmail',
@@ -371,8 +380,8 @@ app.get('/api/perfil/:usuario_id', async (req, res) => {
 });
 
 // INICIALIZADOR DO SERVIDOR
-app.listen(PORT, () => {
-    console.log(`✓ Servidor rodando localmente na porta ${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`✓ Servidor rodando em 0.0.0.0:${PORT}`);
     testarConexao().catch(() => {});
 
     transportador.verify(function (error, success) {
