@@ -837,9 +837,23 @@ if (btnSairAdmin) {
 
 async function carregarPerfisPendentes() {
     try {
-        const resposta = await fetch(`${API_URL}/admin/pendentes`);
+        const tokenAdmin = localStorage.getItem('tokenAdmin');
+        const resposta = await fetch(`${API_URL}/admin/pendentes`, {
+            headers: { 'Authorization': `Bearer ${tokenAdmin || ''}` }
+        });
         const pendentes = await resposta.json();
-        
+
+        if (resposta.status === 401 || resposta.status === 403) {
+            localStorage.removeItem('tokenAdmin');
+            if (secaoPainelAdmin) secaoPainelAdmin.style.display = 'none';
+            if (secaoLoginAdmin) secaoLoginAdmin.style.display = 'grid';
+            const erro = document.getElementById('msgErroAdmin');
+            if (erro) erro.textContent = pendentes.erro || 'Sua sessão administrativa expirou. Entre novamente.';
+            return;
+        }
+
+        if (!resposta.ok) throw new Error(pendentes.erro || 'Erro ao carregar perfis pendentes.');
+
         containerPendentes.innerHTML = '';
         if (pendentes.length === 0) {
             containerPendentes.innerHTML = '<div class="empty-state">Nenhum perfil pendente de aprovação.</div>';
@@ -878,11 +892,22 @@ async function avaliarPerfil(perfilId, statusDecisao) {
     if (!confirm(`Tem certeza que deseja ${statusDecisao} este perfil?`)) return;
 
     try {
+        const tokenAdmin = localStorage.getItem('tokenAdmin');
         const resposta = await fetch(`${API_URL}/admin/avaliar/${perfilId}`, {
             method: 'PATCH',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${tokenAdmin || ''}`
+            },
             body: JSON.stringify({ status: statusDecisao })
         });
+
+        if (resposta.status === 401 || resposta.status === 403) {
+            localStorage.removeItem('tokenAdmin');
+            alert('Sua sessão administrativa expirou. Entre novamente.');
+            window.location.reload();
+            return;
+        }
 
         if (resposta.ok) {
             alert(`Perfil ${statusDecisao} com sucesso!`);

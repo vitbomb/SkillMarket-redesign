@@ -3117,3 +3117,81 @@ html[data-theme='dark'] ::selection {
         max-width: 100%;
     }
 }
+
+/* =========================================================
+   PASSWORD VISIBILITY TOGGLE
+   ========================================================= */
+.password-input-wrap {
+    position: relative;
+    width: 100%;
+}
+
+.password-input-wrap > input {
+    width: 100%;
+    padding-right: 48px !important;
+}
+
+.password-toggle {
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    width: 36px;
+    height: 36px;
+    transform: translateY(-50%);
+    display: grid;
+    place-items: center;
+    padding: 0;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: #667085;
+    cursor: pointer;
+    transition: background-color .15s ease, color .15s ease, box-shadow .15s ease;
+}
+
+.password-toggle:hover {
+    background: #eef2ff;
+    color: var(--primary);
+}
+
+.password-toggle:focus-visible {
+    outline: 0;
+    box-shadow: 0 0 0 3px rgba(53, 87, 229, .18);
+}
+
+.password-toggle svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.password-eye--hide {
+    display: none;
+}
+
+.password-toggle.is-visible .password-eye--show {
+    display: none;
+}
+
+.password-toggle.is-visible .password-eye--hide {
+    display: block;
+}
+
+/* Evita dois ícones de revelar senha em navegadores que possuem um nativo. */
+.password-input-wrap input::-ms-reveal,
+.password-input-wrap input::-ms-clear {
+    display: none;
+}
+
+html[data-theme='dark'] .password-toggle {
+    color: #91a0b7;
+}
+
+html[data-theme='dark'] .password-toggle:hover {
+    background: #1a2640;
+    color: #a8b7ff;
+}

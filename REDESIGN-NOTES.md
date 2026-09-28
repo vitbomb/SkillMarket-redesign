@@ -33,3 +33,15 @@ Antes de publicar uma versão definitiva, vale revisar a segurança das rotas ad
 - O botão de tema é inserido automaticamente no cabeçalho; no painel administrativo, que não possui cabeçalho global, ele aparece de forma flutuante.
 - O tema escuro cobre home, busca, perfis, autenticação, formulários, ajuda, sobre, painel administrativo, footer e componentes gerados dinamicamente.
 - Foram adicionados `color-scheme`, estilos de autofill, foco, contraste e suporte a `prefers-reduced-motion`.
+
+## Atualização: senhas e painel administrativo
+
+- Todos os campos de senha agora possuem botão de mostrar/ocultar senha (ícone de olho), inclusive login, cadastro, redefinição e painel administrativo.
+- As rotas administrativas de listagem e avaliação agora exigem o token JWT de administrador.
+- Foram removidos logs que exibiam as credenciais administrativas no terminal do servidor.
+- O link de redefinição de senha dos usuários agora usa `FRONTEND_URL`, com fallback para `https://skill-market-redesign.vercel.app`.
+- O arquivo `backend/.env.example` documenta as variáveis necessárias sem incluir segredos reais.
+
+### Acesso ao painel
+
+A página é `admin.html`. As credenciais administrativas são definidas no servidor pelas variáveis de ambiente `ADMIN_EMAIL` e `ADMIN_SENHA`. Em produção, esses valores devem ficar configurados no provedor do backend (por exemplo, Render) e nunca devem ser enviados ao GitHub.

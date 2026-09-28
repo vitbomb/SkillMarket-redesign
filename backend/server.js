@@ -29,25 +29,42 @@ const transportador = nodemailer.createTransport({
 // ==========================================
 
 // Login do Administrador
-// Login do Administrador
 app.post('/api/admin/login', (req, res) => {
     const { email, senha } = req.body;
-    
-    // --- ESPIONANDO AS VARIÁVEIS NO TERMINAL ---
-    console.log("=== TENTATIVA DE LOGIN ADMIN ===");
-    console.log(`O que você digitou na tela -> Email: '${email}' | Senha: '${senha}'`);
-    console.log(`O que o servidor leu no .env -> Email: '${process.env.ADMIN_EMAIL}' | Senha: '${process.env.ADMIN_SENHA}'`);
-    // -------------------------------------------
+
+    if (!process.env.ADMIN_EMAIL || !process.env.ADMIN_SENHA) {
+        return res.status(503).json({ erro: 'Acesso administrativo ainda não foi configurado no servidor.' });
+    }
 
     if (email === process.env.ADMIN_EMAIL && senha === process.env.ADMIN_SENHA) {
         const tokenAdmin = jwt.sign({ role: 'admin' }, JWT_SECRET, { expiresIn: '12h' });
-        return res.json({ mensagem: 'Login de Admin efetuado!', tokenAdmin });
+        return res.json({ mensagem: 'Login de administrador efetuado!', tokenAdmin });
     }
     return res.status(401).json({ erro: 'Credenciais de administrador inválidas.' });
 });
 
+function autenticarAdmin(req, res, next) {
+    const authHeader = req.headers.authorization || '';
+    const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : null;
+
+    if (!token) {
+        return res.status(401).json({ erro: 'Acesso administrativo não autorizado.' });
+    }
+
+    try {
+        const payload = jwt.verify(token, JWT_SECRET);
+        if (payload.role !== 'admin') {
+            return res.status(403).json({ erro: 'Acesso administrativo não autorizado.' });
+        }
+        req.admin = payload;
+        next();
+    } catch (_) {
+        return res.status(401).json({ erro: 'Sessão administrativa inválida ou expirada.' });
+    }
+}
+
 // Listar perfis pendentes
-app.get('/api/admin/pendentes', async (req, res) => {
+app.get('/api/admin/pendentes', autenticarAdmin, async (req, res) => {
     try {
         const resultado = await pool.query(`
             SELECT p.*, u.nome, u.email 
@@ -62,9 +79,12 @@ app.get('/api/admin/pendentes', async (req, res) => {
 });
 
 // Aprovar ou Rejeitar perfil
-app.patch('/api/admin/avaliar/:id', async (req, res) => {
+app.patch('/api/admin/avaliar/:id', autenticarAdmin, async (req, res) => {
     const { id } = req.params;
-    const { status } = req.body; // Deve receber 'aprovado' ou 'rejeitado'
+    const { status } = req.body;
+    if (!['aprovado', 'rejeitado'].includes(status)) {
+        return res.status(400).json({ erro: 'Status administrativo inválido.' });
+    }
     try {
         await pool.query('UPDATE perfis SET status = $1 WHERE id = $2', [status, id]);
         res.json({ mensagem: `Perfil marcado como ${status}.` });
@@ -198,7 +218,8 @@ app.post('/api/esqueci-senha', async (req, res) => {
         const token = crypto.randomBytes(20).toString('hex');
         await pool.query('UPDATE usuarios SET token_recuperacao = $1 WHERE email = $2', [token, email]);
 
-        const linkRedefinicao = `https://skill-market-ruby.vercel.app/redefinir-senha.html?token=${token}`;
+        const frontendUrl = (process.env.FRONTEND_URL || 'https://skill-market-redesign.vercel.app').replace(/\/$/, '');
+        const linkRedefinicao = `${frontendUrl}/redefinir-senha.html?token=${token}`;
 
         const opcoesEmail = {
             from: process.env.EMAIL_USER,

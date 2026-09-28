@@ -83,6 +83,56 @@
         return button;
     }
 
+
+
+    function passwordToggleMarkup() {
+        return `
+            <svg class="password-eye password-eye--show" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"></path>
+                <circle cx="12" cy="12" r="2.7"></circle>
+            </svg>
+            <svg class="password-eye password-eye--hide" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M3 3l18 18"></path>
+                <path d="M10.6 6.2A10.7 10.7 0 0 1 12 6c6 0 9.5 6 9.5 6a16 16 0 0 1-3 3.8"></path>
+                <path d="M6.1 6.1C3.8 7.8 2.5 12 2.5 12s3.5 6 9.5 6c1.5 0 2.9-.4 4.1-1"></path>
+                <path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"></path>
+            </svg>`;
+    }
+
+    function mountPasswordToggles() {
+        document.querySelectorAll('input[type="password"]').forEach(input => {
+            if (input.closest('.password-input-wrap')) return;
+
+            const wrapper = document.createElement('div');
+            wrapper.className = 'password-input-wrap';
+            input.parentNode.insertBefore(wrapper, input);
+            wrapper.appendChild(input);
+
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.className = 'password-toggle';
+            button.setAttribute('aria-label', 'Mostrar senha');
+            button.setAttribute('title', 'Mostrar senha');
+            button.setAttribute('aria-pressed', 'false');
+            button.innerHTML = passwordToggleMarkup();
+            wrapper.appendChild(button);
+
+            button.addEventListener('click', () => {
+                const showing = input.type === 'text';
+                input.type = showing ? 'password' : 'text';
+                button.classList.toggle('is-visible', !showing);
+                button.setAttribute('aria-pressed', String(!showing));
+                button.setAttribute('aria-label', showing ? 'Mostrar senha' : 'Ocultar senha');
+                button.setAttribute('title', showing ? 'Mostrar senha' : 'Ocultar senha');
+                input.focus({ preventScroll: true });
+                try {
+                    const end = input.value.length;
+                    input.setSelectionRange(end, end);
+                } catch (_) {}
+            });
+        });
+    }
+
     function mountToggle() {
         if (document.getElementById('themeToggle')) return;
         const button = themeButtonMarkup();
@@ -105,10 +155,15 @@
         });
     }
 
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', mountToggle, { once: true });
-    } else {
+    function mountInterfaceUtilities() {
         mountToggle();
+        mountPasswordToggles();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', mountInterfaceUtilities, { once: true });
+    } else {
+        mountInterfaceUtilities();
     }
 
     if (media) {
