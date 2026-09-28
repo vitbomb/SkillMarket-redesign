@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Skill Market conecta profissionais de serviços digitais a pessoas e projetos que precisam de talento especializado.">
+    <title>Editar perfil profissional | Skill Market</title>
+    <script src="theme.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" type="image/png" href="imagens/download-_1_.ico">
+</head>
+<body class="body2">
+<header class="site-header">
+    <div class="header-shell">
+        <a class="brand" href="index.html" aria-label="Skill Market - página inicial">
+            <span class="brand-mark"><img src="imagens/logoestrela.png" alt=""></span>
+            <span class="brand-name">Skill<span>Market</span></span>
+        </a>
+        
+        <div class="busca-header" role="search">
+            <input type="search" id="campoBuscaHeader" placeholder="Buscar profissionais..." aria-label="Buscar profissionais">
+            <button id="btnBuscarHeader" type="button">Buscar</button>
+        </div>
+        <div class="header-geral">
+            <nav aria-label="Navegação principal">
+                <ul class="itens-header">
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="busca.html">Explorar</a></li>
+                    <li><a href="sobrenos.html">Sobre</a></li>
+                    <li><a href="help.html">Ajuda</a></li>
+                    <li id="menu-signin"><a href="signin.html">Entrar</a></li>
+                    <li id="menu-signup"><a href="signup.html">Criar conta</a></li>
+                </ul>
+            </nav>
+            <div class="perfil-header" id="menu-perfil" style="display: none;">
+                <img src="imagens/placeholder-usuario.png" alt="Foto do perfil" class="imagem2-header" tabindex="0">
+                <div class="submenu-perfil">
+                    <a href="perfil.html" id="linkMeuPerfilMenu">Meu perfil</a>
+                    <a href="perfil-profissional.html">Editar perfil</a>
+                    <a href="#" id="btnSair">Sair da conta</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<main class="container-perfilP">
+    <form id="formPerfil" class="card-cadastro card-perfil">
+        <div class="profile-form-head"><div><span class="section-kicker">Seu perfil</span><h1>Editar perfil profissional</h1><p>Mantenha suas informações claras e atualizadas. Alterações em perfis profissionais voltam para moderação antes de aparecerem publicamente.</p></div></div>
+        <section class="form-section">
+            <div class="form-section-title"><h2>Foto e apresentação</h2><p>Uma apresentação objetiva ajuda outras pessoas a entenderem rapidamente quem você é.</p></div>
+            <div class="avatar-editor">
+                <label class="imagem-upload avatar-upload" title="Clique para trocar a foto"><img src="imagens/placeholder-usuario.png" alt="Prévia da foto de perfil" class="preview-imagem" id="previewAvatar"><input type="file" accept="image/*" id="inputAvatar" class="input-imagem" hidden></label>
+                <div class="avatar-help"><strong>Foto de perfil</strong><span>Clique na imagem para selecionar uma foto. Prefira enquadramentos claros e centralizados.</span></div>
+            </div>
+        </section>
+        <section class="form-section">
+            <div class="form-section-title"><h2>Informações principais</h2><p>Esses dados ajudam a organizar e identificar seu perfil na plataforma.</p></div>
+            <div class="profile-form-grid">
+                <div class="campo"><label for="nomeCompleto">Nome completo</label><input type="text" id="nomeCompleto" placeholder="Como você quer ser identificado"></div>
+                <div class="campo"><label for="areaAtuacao">Área de atuação / cargo</label><input type="text" id="areaAtuacao" placeholder="Ex.: Designer, Desenvolvedor, Social Media"></div>
+                <div class="campo"><label for="localizacao">Localização</label><input type="text" id="localizacao" placeholder="Ex.: Toledo, PR"></div>
+                <div class="campo full"><label for="sobreVoce">Sobre você</label><textarea id="sobreVoce" rows="5" placeholder="Apresente sua experiência, seu estilo de trabalho e o tipo de projeto que procura."></textarea></div>
+                <div class="campo full"><label>Habilidades e qualidades</label><span class="field-help">Use palavras curtas que facilitem a busca pelo seu perfil.</span><div class="qualidades-container" id="qualidadesContainer"><input type="text" class="input-qualidade" placeholder="Ex.: Figma"><input type="text" class="input-qualidade" placeholder="Ex.: JavaScript"><input type="text" class="input-qualidade" placeholder="Ex.: Comunicação"><button type="button" id="btnAddQualidade" class="btn-add-circular" aria-label="Adicionar habilidade">+</button></div></div>
+            </div>
+        </section>
+        <section class="form-section">
+            <div class="form-section-title"><h2>Contato</h2><p>Informe os canais pelos quais outras pessoas poderão conversar com você.</p></div>
+            <div class="profile-form-grid">
+                <div class="campo"><label for="telefone">Telefone / WhatsApp</label><input type="text" id="telefone" placeholder="(45) 99999-9999"></div>
+                <div class="campo"><label for="instagram">Instagram</label><input type="text" id="instagram" placeholder="@usuario"></div>
+                <div class="campo"><label for="emailContato">E-mail para contato</label><input type="email" id="emailContato" placeholder="contato@exemplo.com"></div>
+                <div class="campo"><label for="site">Site pessoal / portfólio</label><input type="text" id="site" placeholder="https://seusite.com"></div>
+            </div>
+        </section>
+        
+        <section class="form-section">
+            <div class="form-section-title"><h2>Portfólio</h2><p>Adicione imagens que ajudem a mostrar a qualidade e o estilo do seu trabalho.</p></div>
+            <div class="imagens-container" id="imagensContainer">
+                <label class="imagem-upload"><img src="imagens/placeholder-paisagem.png" alt="Prévia do projeto" class="preview-imagem"><input type="file" accept="image/*" class="input-imagem" hidden></label>
+                <label class="imagem-upload"><img src="imagens/placeholder-paisagem.png" alt="Prévia do projeto" class="preview-imagem"><input type="file" accept="image/*" class="input-imagem" hidden></label>
+                <button type="button" id="btnAddImagem" class="btn-add-circular btn-add-imagem" aria-label="Adicionar outra imagem">+</button>
+            </div>
+        </section>
+        <div class="botoes-perfilP"><button type="submit" id="btnSalvarPerfil">Salvar perfil</button></div>
+    </form>
+</main>
+<footer class="site-footer">
+    <div class="footer-shell">
+        <div>© 2026 Skill Market · Procure. Encontre. Conecte.</div>
+        <div class="footer-links">
+            <a href="busca.html">Explorar profissionais</a>
+            <a href="sobrenos.html">Sobre o projeto</a>
+            <a href="help.html">Central de ajuda</a>
+        </div>
+    </div>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>

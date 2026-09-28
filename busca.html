@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Skill Market conecta profissionais de serviços digitais a pessoas e projetos que precisam de talento especializado.">
+    <title>Explorar profissionais | Skill Market</title>
+    <script src="theme.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" type="image/png" href="imagens/download-_1_.ico">
+</head>
+<body class="body2">
+<header class="site-header">
+    <div class="header-shell">
+        <a class="brand" href="index.html" aria-label="Skill Market - página inicial">
+            <span class="brand-mark"><img src="imagens/logoestrela.png" alt=""></span>
+            <span class="brand-name">Skill<span>Market</span></span>
+        </a>
+        
+        <div class="busca-header" role="search">
+            <input type="search" id="campoBuscaHeader" placeholder="Buscar profissionais..." aria-label="Buscar profissionais">
+            <button id="btnBuscarHeader" type="button">Buscar</button>
+        </div>
+        <div class="header-geral">
+            <nav aria-label="Navegação principal">
+                <ul class="itens-header">
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="busca.html">Explorar</a></li>
+                    <li><a href="sobrenos.html">Sobre</a></li>
+                    <li><a href="help.html">Ajuda</a></li>
+                    <li id="menu-signin"><a href="signin.html">Entrar</a></li>
+                    <li id="menu-signup"><a href="signup.html">Criar conta</a></li>
+                </ul>
+            </nav>
+            <div class="perfil-header" id="menu-perfil" style="display: none;">
+                <img src="imagens/placeholder-usuario.png" alt="Foto do perfil" class="imagem2-header" tabindex="0">
+                <div class="submenu-perfil">
+                    <a href="perfil.html" id="linkMeuPerfilMenu">Meu perfil</a>
+                    <a href="perfil-profissional.html">Editar perfil</a>
+                    <a href="#" id="btnSair">Sair da conta</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<main>
+    <section class="page-hero">
+        <div class="section-shell">
+            <span class="page-kicker">Profissionais</span>
+            <h1>Encontre quem pode fazer seu projeto acontecer</h1>
+            <p>Use a busca para procurar por nome, área de atuação, habilidade ou localização.</p>
+        </div>
+    </section>
+
+    <div class="layout-busca">
+        <aside class="sidebar-busca" aria-label="Sugestões de busca">
+            <div class="sidebar-group">
+                <div class="sidebar-titulo">Busque por habilidades</div>
+                <div class="sidebar-caixa">
+                    <a href="busca.html?busca=design">Design</a><a href="busca.html?busca=html">HTML</a><a href="busca.html?busca=javascript">JavaScript</a><a href="busca.html?busca=edição">Edição</a><a href="busca.html?busca=marketing">Marketing</a><a href="busca.html?busca=redação">Redação</a>
+                </div>
+            </div>
+            <div class="sidebar-group">
+                <div class="sidebar-titulo">Outras áreas</div>
+                <div class="sidebar-caixa">
+                    <a href="busca.html?busca=programador">Programação</a><a href="busca.html?busca=social media">Social media</a><a href="busca.html?busca=editor">Vídeo</a><a href="busca.html?busca=designer">Design gráfico</a>
+                </div>
+            </div>
+        </aside>
+
+        <section class="resultados-area">
+            <div class="results-toolbar"><h2>Profissionais disponíveis</h2><span>Perfis aprovados pela plataforma</span></div>
+            <div class="resultados-grid" id="containerResultados" aria-live="polite"></div>
+        </section>
+    </div>
+</main>
+<footer class="site-footer">
+    <div class="footer-shell">
+        <div>© 2026 Skill Market · Procure. Encontre. Conecte.</div>
+        <div class="footer-links">
+            <a href="busca.html">Explorar profissionais</a>
+            <a href="sobrenos.html">Sobre o projeto</a>
+            <a href="help.html">Central de ajuda</a>
+        </div>
+    </div>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>
